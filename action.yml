@@ -11,8 +11,8 @@ inputs:
   release_commit_sha: # id of input
     description: "SHA of the commit to detect the release of"
     required: true
-  repository_url: # id of input
-    description: "URL of the repository"
+  repository_name: # id of input
+    description: "Name of the repository"
     required: true
 runs:
   using: "composite"
@@ -21,5 +21,5 @@ runs:
       run: echo "::set-output name=date::$(date +'%s')"
       shell: bash
     - run: |
-        curl -X POST --header 'x-api-key: ${{ inputs.linearb_api_token }}' --header 'Content-Type: application/json' -d '{"head_sha": "${{ inputs.release_commit_sha }}", "repo_url": "${{ inputs.repository_url }}", "stage_id": "release", "event_time": "${{ steps.date.outputs.date }}"}' https://public-api.linearb.io/api/v1/cycle-time-stages
+        curl -X POST --header 'x-api-key: ${{ inputs.linearb_api_token }}' --header 'Content-Type: application/json' -d '{"head_sha": "${{ inputs.release_commit_sha }}", "repo_url": "https://github.com/${{ inputs.repository_name }}.git", "stage_id": "release", "event_time": "${{ steps.date.outputs.date }}"}' https://public-api.linearb.io/api/v1/cycle-time-stages
       shell: bash
