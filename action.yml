@@ -1,6 +1,9 @@
 # action.yml
 name: "LinearB release detection action"
 description: "Send a http request to the LinearB API to detect the release of a new version of the application"
+branding:
+  icon: 'bell'  
+  color: 'green'
 inputs:
   linearb_api_token: # id of input
     description: "API token for LinearB"
