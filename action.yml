@@ -1,5 +1,5 @@
 # action.yml
-name: "LinearB release detection action"
+name: "LinearB test release detection action"
 description: "Send a http request to the LinearB API to detect the release of a new version of the application"
 branding:
   icon: 'bell'  
@@ -23,3 +23,5 @@ runs:
     - run: |
         curl -X POST --header 'x-api-key: ${{ inputs.linearb_api_token }}' --header 'Content-Type: application/json' -d '{"head_sha": "${{ inputs.release_commit_sha }}", "repo_url": "https://github.com/${{ inputs.repository_name }}.git", "stage_id": "release", "event_time": "${{ steps.date.outputs.date }}"}' https://public-api.linearb.io/api/v1/cycle-time-stages
       shell: bash
+
+
